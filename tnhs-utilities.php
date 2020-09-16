@@ -158,7 +158,7 @@ class TNHS_WP_GTM_DataPrivacy
       $opt_val = $_POST[self::$option_gtm_id];
 
       // sanitize our input
-      $opt_val = sanitize_option(self::$option_gtm_id, $opt_val);
+      $opt_val = sanitize_text_field($opt_val);
 
       // Save the posted value in the database
       update_option(self::$option_gtm_id, $opt_val);
