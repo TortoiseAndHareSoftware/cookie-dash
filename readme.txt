@@ -3,6 +3,7 @@ Contributors: tnhsaesop
 Tags: Google Tag Manager, Tag Manager, GDPR, CCPA, Data Privacy
 Requires at least: 5.2
 Tested up to: 5.6
+Stable tag: 1.1.1
 Requires PHP: 7.2
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -37,5 +38,6 @@ Version 1.1
 - Added opt-in vs opt-out support for GDPR compliance and other opt-in based privacy laws
 - Added admin notification when plugin is not configured
 
+Version 1.1.1
 
-
+- Bug fix

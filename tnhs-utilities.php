@@ -8,7 +8,7 @@
  * Plugin Name:       WP GTM Data Privacy
  * Plugin URI:        https://tortoiseandharesoftware.com/wp-gtm-data-privacy
  * Description:       A WordPress Plugin that allows you to quickly and easily deploy an instance of Google Tag manager and block the loading of the container if cookie consent is not granted.
- * Version:           1.1
+ * Version:           1.1.1
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Tortoise and Hare Software
@@ -40,7 +40,7 @@ register_uninstall_hook(__FILE__, array('TNHS_WP_GTM_DataPrivacy', 'tnhs_wp_gtm_
 class TNHS_WP_GTM_DataPrivacy
 {
   // plugin version
-  private static $tnhs_wp_gtm_data_privacy_plugin_version = '1.1';
+  private static $tnhs_wp_gtm_data_privacy_plugin_version = '1.1.1';
 
 
   // plugin settings variables
@@ -127,7 +127,7 @@ class TNHS_WP_GTM_DataPrivacy
 
     // make sure we are on an allowed domain
     $arr_allowed_domains = explode(",", get_option(self::$option_allowed_domains));
-    if (!in_array(self::$hostname, $arr_allowed_domains))
+    if (!in_array($this->hostname, $arr_allowed_domains))
       return;
 
 
