@@ -2,7 +2,7 @@
 Contributors: tnhsaesop
 Tags: Google Tag Manager, Tag Manager, GDPR, CCPA, Data Privacy
 Requires at least: 5.2
-Tested up to: 5.5.1
+Tested up to: 5.6
 Requires PHP: 7.2
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -21,5 +21,21 @@ This plugin works under the assumption that all marketing tags for 3rd party too
 2 Upload the plugin zip file to your plugins directory 
 3 Activate the plugin from your plugin page
 4 Go to Settings > WP GTM Data Privacy
-5 Enter Your Tag Manager Container ID With NO SPACES
+5 Fill out the form fields in the settings screen
 6 Test your container output by using Google Tag Assistant https://chrome.google.com/webstore/detail/tag-assistant-by-google/kejbdjndbnbjgmefkgdddjlbokphdefk?hl=en
+
+== Changelog ==
+
+Version 1.0
+
+Initital release with basic cookie consent that blocks the load of the Google Tag manager container when users decline personalization cookie consent.  
+
+Version 1.1
+
+- Added the ability to set a list of allowed domains that the GTM container can be output on
+- Added the ability to choose the privacy policy slug 
+- Added opt-in vs opt-out support for GDPR compliance and other opt-in based privacy laws
+- Added admin notification when plugin is not configured
+
+
+

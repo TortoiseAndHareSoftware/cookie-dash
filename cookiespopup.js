@@ -10,6 +10,8 @@ jQuery('#AcceptCookiesButton').click(function () {
     document.cookie = "AcceptedCookies=true; expires=" + date.toGMTString() + ";";
     storage.setItem('AcceptedCookies', 'true');
     jQuery('#ThisSiteUsesCookiesBox').remove();
+    alert("Personalization cookies enabled, press OK to reload the page");
+    location.reload();
 });
 
 jQuery('#DeclineCookiesButton').click(function (e) {
