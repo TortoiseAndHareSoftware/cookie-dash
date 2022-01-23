@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @package CookieDash
- * @version 1.0
+ * @package Cookie Dash
+ * @version 1.2
  */
 /*
- * Plugin Name:       CookieDash
+ * Plugin Name:       Cookie Dash
  * Plugin URI:        https://tortoiseandharesoftware.com/wp-gtm-data-privacy
  * Description:       A WordPress Plugin that allows you to quickly and easily deploy an instance of Google Tag manager and block the loading of the container if cookie consent is not granted.
- * Version:           1.1.1
+ * Version:           1.2
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Tortoise and Hare Software
@@ -20,18 +20,18 @@
 */
 
 /*
-CookieDash is free software: you can redistribute it and/or modify
+Cookie Dash is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 any later version.
  
-CookieDash is distributed in the hope that it will be useful,
+Cookie Dash is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
  
 You should have received a copy of the GNU General Public License
-along with CookieDash. If not, see https://www.gnu.org/licenses/gpl-2.0.html. */
+along with Cookie Dash. If not, see https://www.gnu.org/licenses/gpl-2.0.html. */
 
 register_activation_hook(__FILE__, array('TNHS_COOKIE_DASH', 'tnhs_cookie_dash_activation'));
 register_deactivation_hook(__FILE__, array('TNHS_COOKIE_DASH', 'tnhs_cookie_dash_deactivation'));
@@ -40,7 +40,7 @@ register_uninstall_hook(__FILE__, array('TNHS_COOKIE_DASH', 'tnhs_cookie_dash_un
 class TNHS_COOKIE_DASH
 {
   // plugin version
-  private static $tnhs_cookie_dash_plugin_version = '1.1.2';
+  private static $tnhs_cookie_dash_plugin_version = '1.2';
 
 
   // plugin settings variables
@@ -93,12 +93,13 @@ class TNHS_COOKIE_DASH
   // delete user cookies and update the plugin version option to the current version of the plugin on upgrade
   static function tnhs_cookie_dash_upgrade_plugin()
   {
+    echo('<script>console.log("Running Cookie Dash Plugin Upgrade.");');
     setcookie("UserOptOut", "", time() - 3600);
     setcookie("AcceptedCookies", "", time() - 3600);
     update_option(self::$option_plugin_version, self::$tnhs_cookie_dash_plugin_version);
 
-    if(get_option($option_privacy_policy_slug)){
-      delete_option($option_privacy_policy_slug);
+    if(get_option(self::$option_privacy_policy_slug)){
+      delete_option(self::$option_privacy_policy_slug);
     }
   }
 
@@ -107,8 +108,8 @@ class TNHS_COOKIE_DASH
   function tnhs_cookie_dash_hook_admin_notices()
   {
     // check to make sure the required options have been configured on the backend
-    if (!get_option(self::$option_allowed_domains) || !get_option(self::$option_gtm_id) || if(get_privacy_policy_url() == '') || !get_option(self::$option_privacy_consent)) {
-      echo '<div class="notice notice-warning is-dismissible" style="min-height:45px;"><p>CookieDash Plugin has not been fully configured! Visit the <a href="' . admin_url("options-general.php?page=tnhs-cookie-dash") . '">plugin settings page</a> to finish configuration.</p></div>';
+    if (!get_option(self::$option_allowed_domains) || !get_option(self::$option_gtm_id) || get_privacy_policy_url() == '' || !get_option(self::$option_privacy_consent)) {
+      echo '<div class="notice notice-warning is-dismissible" style="min-height:45px;"><p>Cookie Dash Plugin has not been fully configured! Visit the <a href="' . admin_url("options-general.php?page=tnhs-cookie-dash") . '">plugin settings page</a> to finish configuration.</p></div>';
     }
   }
 
@@ -121,7 +122,7 @@ class TNHS_COOKIE_DASH
     }
 
     // check to make sure the required options have been configured on the backend
-    if (!get_option(self::$option_allowed_domains) || !get_option(self::$option_gtm_id) || !get_option(self::$option_privacy_policy_slug) || !get_option(self::$option_privacy_consent)) {
+    if (!get_option(self::$option_allowed_domains) || !get_option(self::$option_gtm_id) || !get_option(self::$option_privacy_consent)) {
       return;
     }
 
@@ -191,7 +192,7 @@ class TNHS_COOKIE_DASH
 
   function tnhs_cookie_dash_plugin_menu()
   {
-    add_options_page('CookieDash', 'CookieDash', 'manage_options', 'tnhs-cookie-dash', array(&$this, 'tnhs_cookie_dash_plugin_options'));
+    add_options_page('Cookie Dash', 'Cookie Dash', 'manage_options', 'tnhs-cookie-dash', array(&$this, 'tnhs_cookie_dash_plugin_options'));
   }
 
 
@@ -210,7 +211,6 @@ class TNHS_COOKIE_DASH
     // Read in existing options from database
     $opt_val_gtm_id = get_option(self::$option_gtm_id);
     $opt_val_allowed_domains = get_option(self::$option_allowed_domains);
-    $opt_val_privacy_policy_slug = get_option(self::$option_privacy_policy_slug);
     $opt_val_privacy_consent = get_option(self::$option_privacy_consent);
 
 
@@ -254,12 +254,12 @@ class TNHS_COOKIE_DASH
 
     // header
 
-    echo "<h2>CookieDash Plugin Settings</h2>";
+    echo "<h2>Cookie Dash Plugin Settings</h2>";
 
     // settings form
 
     ?>
-    <p>Welcome to CookieDash, brought to your by <a href="https://tortoiseandharesoftware.com/wp-gtm-data-privacy/?utm_source=wordpress&utm_medium=direct&utm_campaign=WP%20GTM%20Data%20Privacy%20Plugin%20Settings%20Page">Tortoise and Hare Software</a>. Complete the form fields below to get started. Full plugin documentation and support can be found on <a href="https://wordpress.org/plugins/wp-gtm-data-privacy/">the CookieDash plugin page</a></p>
+    <p>Welcome to Cookie Dash, brought to your by <a href="https://tortoiseandharesoftware.com/wp-gtm-data-privacy/?utm_source=wordpress&utm_medium=direct&utm_campaign=WP%20GTM%20Data%20Privacy%20Plugin%20Settings%20Page">Tortoise and Hare Software</a>. Complete the form fields below to get started. Full plugin documentation and support can be found on <a href="https://wordpress.org/plugins/wp-gtm-data-privacy/">the Cookie Dash plugin page</a></p>
 
     <form name="tnhs-cookie-dash-configuration-settings-form" method="post" action="">
       <?php
@@ -341,7 +341,7 @@ class TNHS_COOKIE_DASH
 
   private function shouldnt_write_message()
   {
-    echo ("<!--If your seeing this the user logged in, or your not on an allowed domain, the plugin hasn't been configured fully, or you have opted out of tracking already-->");
+    echo('<script>console.log("If you are seeing this message, the Cookie Dash plugin was not configured correctly or the user has opted out and the Google Tag Manager container is not being loaded.");');
   }
 }
 
