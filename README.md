@@ -1,4 +1,4 @@
-# wp-gtm-data-privacy
+# Cookie Dash
 A WordPress plugin to quickly install Google Tag manager onto your site in a privacy compliant manner.
 
 This plugin is built and maintained by [Tortoise and Hare Software](https://tortoiseandharesoftware.com/wp-gtm-data-privacy/)
